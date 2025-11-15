@@ -1,0 +1,63 @@
+import { div, tr } from "framer-motion/client";
+import React, { use, useEffect, useState } from "react";
+import { AuthContext } from "../Authprovider/AuthContext";
+
+
+const MyBooking =()=>{
+
+    const {user} = use(AuthContext);
+    const [booking,setBooking] = useState([]);
+
+    useEffect(()=>{
+        if(!user?.email) return;
+
+        fetch(`http://localhost:3000/booking/${user.email}`)
+        .then((res)=>res.json())
+        .then((data)=>setBooking(data.result))
+        .catch((err)=>console.log(err));
+    },[user]);
+
+    return(
+        <div className="mt-20 px-5 mb-20">
+            <h1 className=" text-center mb-10 text-xl font-bold">My Booking</h1>
+
+            <div className="p-2 border-2">
+                <table className="table table-zebra w-full">
+                    <thead>
+                        <tr className="">
+                            <th>Serial_on</th>
+                            <th>Service Name</th>
+                            <th>Price</th>
+                            <th>Booking</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                <tbody>
+                    {booking.map((item,id)=>(
+                        <tr key={item._id}>
+                            <td>{id+1}</td>
+                            <td>{item.serviceDetails.serviceName}</td>
+                            <td>{item.price}</td>
+                            <td>{item.bookingDate}</td>
+
+                            <td>
+                                <button className="btn btn-sm bg-red-500 text-white">
+                                    Cancel
+                                </button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+
+
+                </table>
+
+            </div>
+
+        </div>
+    )
+
+}
+
+export default MyBooking;

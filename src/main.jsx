@@ -51,9 +51,11 @@ const router = createBrowserRouter([
 
     },{
       path:"addService",
-      element: <AddService/>,
+      element: 
+      <PrivateRoutes>
+          <AddService/>
+      </PrivateRoutes>
       
-
     },{
       path:"/service-details/:id",
       element:(
@@ -65,14 +67,22 @@ const router = createBrowserRouter([
       loader: ({params}) => fetch(`http://localhost:3000/models/${params.id}`)
     },{
       path:'/myservice',
-      element: <MyService/>,
-      
+      element:
+      <PrivateRoutes>
+              <MyService/>
+      </PrivateRoutes>
     },{
       path: "/my-booking",
-      element: <MyBooking/>
+      element: 
+      <PrivateRoutes>
+            <MyBooking/>
+      </PrivateRoutes>
     },{
       path:"/update-service/:id",
-      element:<UpdateService/>,
+      element:
+          <PrivateRoutes>
+                    <UpdateService/>
+          </PrivateRoutes>,
 
        loader: ({params}) => fetch(`http://localhost:3000/models/${params.id}`)
     }

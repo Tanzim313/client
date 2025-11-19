@@ -1,17 +1,38 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useLoaderData } from "react-router";
 import {motion} from "framer-motion";
 import BookingModal from "./BookingModal";
+import { AuthContext } from "../Authprovider/AuthContext";
+import Swal from "sweetalert2";
 
 const ServiceDetails =()=>{
 
     const data = useLoaderData();
     const model = data?.result;
 
+    const {user} = useContext(AuthContext);
+
+
 
     const [isModalOpen, setIsModalOpen] = useState(false); 
 
-    const openModal = () => setIsModalOpen(true);
+    const openModal = () =>{
+        
+        if(model.created_by === user?.email){
+
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!",
+                footer: '<a href="#">Why do I have this issue?</a>'
+            });
+
+            return;
+        }
+        
+        setIsModalOpen(true);
+    }
+   
     const closeModal = () => setIsModalOpen(false);
 
     const {
@@ -55,6 +76,7 @@ const ServiceDetails =()=>{
                     }}
 
                     onClick={openModal}
+                    
                     >
                     Book now
             </motion.button>

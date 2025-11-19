@@ -1,6 +1,7 @@
 import React, { use, useEffect, useState } from "react";
-import { useLoaderData } from "react-router";
+import { Link, useLoaderData, useNavigate } from "react-router";
 import { AuthContext } from "../Authprovider/AuthContext";
+import Swal from "sweetalert2";
 
 
 const MyService =()=>{
@@ -23,10 +24,60 @@ const MyService =()=>{
     },[user]);
 
 
+    const navigate = useNavigate()
+
+
+    const handleDelete =(e)=>{
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+}).then((result) => {
+    if (result.isConfirmed) {
+
+        fetch(`http://localhost:3000/models/${e}`,{
+
+            method: "DELETE",
+            headers:{
+                    "Content-Type":"application/json",
+            },
+
+        })
+        .then(res=>res.json())
+        .then(data=>{
+
+            navigate('/service')
+
+
+            Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success"
+            });
+
+            console.log(data)
+        })
+        .catch(err=>{
+            console.log(err)
+        })
+
+        
+
+    }
+    });
+
+}
+
+
     return(
 
          <div className="mt-20 px-5 mb-20">
-                    <h1 className=" text-center mb-10 text-xl font-bold">My Booking</h1>
+                    <h1 className=" text-center mb-10 text-xl font-bold">My Services</h1>
         
                     <div className="p-2 border-2">
                         <table className="table table-zebra w-full">
@@ -48,13 +99,17 @@ const MyService =()=>{
                                     <td>{service.price}</td>
         
                                     <td>
+                                    <Link to={`/update-service/${service._id}`}>
                                         <button className="btn btn-sm bg-cyan-500 text-white">
                                             Update
                                         </button>
+                                    </Link>
                                     </td>
 
                                      <td>
-                                        <button className="btn btn-sm bg-red-500 text-white">
+                                        <button
+                                        onClick={()=>handleDelete(service._id)}
+                                         className="btn btn-sm bg-red-500 text-white">
                                             Delete
                                         </button>
                                     </td>

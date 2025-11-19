@@ -19,7 +19,7 @@ const Navbar =()=>{
             <>
                         
             <li className="text-xl font-bold text-[#33ccff] "><NavLink to="/">Home</NavLink></li>
-            <li className="text-xl font-bold text-[#33ccff] "><NavLink to="/">Services</NavLink></li>
+            <li className="text-xl font-bold text-[#33ccff] "><NavLink to="/service">Services</NavLink></li>
             { !user && <>
                         <li className="text-xl font-bold text-[#33ccff] "><NavLink to="/login">Login</NavLink></li>
                         <li className="text-xl font-bold text-[#33ccff]"><NavLink to="/register">Register</NavLink></li>

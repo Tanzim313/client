@@ -37,10 +37,27 @@ const Navbar =()=>{
     </>
     )
 
+
+    const handleTheme=(checked)=>{
+
+      const html = document.querySelector('html')
+      if(checked){
+        html.setAttribute("data-theme","dark")
+      }
+      else{
+        html.setAttribute("data-theme","light")
+      }
+
+
+      console.log(checked)
+    }
+
+
+
     return(
 
         <div className="">
-                <div className="navbar bg-[#000000] shadow-sm ">
+                <div className="navbar shadow-sm ">
   <div className=" navbar-start">
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -60,6 +77,12 @@ const Navbar =()=>{
         {links}
     </ul>
   </div>
+  
+  <input 
+  onChange={(e)=>handleTheme(e.target.checked)}
+  type="checkbox" 
+  defaultChecked className="toggle toggle-sm" />
+
   <div className="navbar-end">
    {user?
    <div className="flex gap-x-4 items-center">
@@ -67,6 +90,7 @@ const Navbar =()=>{
 <div className="tooltip tooltip-bottom" data-tip={user.displayName}>
    <img className="sm:w-[50px] sm:h-[50px] w-[30px] h-[30px] rounded-full border-2 border-b-cyan-800 border-e-amber-400 border-l-blue-400 " src={user.photoURL} alt="" /> 
 </div >
+
 
     <a onClick={handleSignOut} className="btn bg-[#33ccff] font-bold  w-20  text-black">Signout</a>
    </div>

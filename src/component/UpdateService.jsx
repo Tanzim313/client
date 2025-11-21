@@ -24,7 +24,7 @@ const UpdateService=()=>{
             email:e.target.email.value,
         };
 
-        fetch(`http://localhost:3000/models/${service._id}`,{
+        fetch(`https://serveron.vercel.app/models/${service._id}`,{
 
             method: "PUT",
             headers:{

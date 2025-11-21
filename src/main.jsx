@@ -6,7 +6,6 @@ import Root from './Routes/Root';
 import Login from './component/Login/Login';
 import Register from './component/Register/Register';
 import AuthProvider from './Authprovider/AuthProvider';
-import Home from './component/home';
 import ServiceApp from './component/ServiceApp';
 import AllService from './component/AllService';
 import AddService from './component/AddService/AddService';
@@ -15,6 +14,9 @@ import PrivateRoutes from './Routes/PrivateRoutes';
 import MyService from './component/MyService';
 import MyBooking from './component/MyBooking';
 import UpdateService from './component/Updateservice';
+import MyProfile from './component/MyProfile';
+import MyUpdate from './component/MyUpdateProfile';
+import Home from './component/Home';
 
 
 
@@ -31,7 +33,7 @@ const router = createBrowserRouter([
         path:"/",
         element:<Home/>,
 
-        loader: ()=> fetch('http://localhost:3000/models')
+        loader: ()=> fetch('https://serveron.vercel.app/models')
 
       },
       {
@@ -47,7 +49,7 @@ const router = createBrowserRouter([
         path: "service",
         element: <AllService/>,
 
-        loader: ()=> fetch('http://localhost:3000/models')
+        loader: ()=> fetch('https://serveron.vercel.app/models')
 
     },{
       path:"addService",
@@ -64,7 +66,7 @@ const router = createBrowserRouter([
         </PrivateRoutes>   
       ),
 
-      loader: ({params}) => fetch(`http://localhost:3000/models/${params.id}`)
+      loader: ({params}) => fetch(`https://serveron.vercel.app/models/${params.id}`)
     },{
       path:'/myservice',
       element:
@@ -84,10 +86,16 @@ const router = createBrowserRouter([
                     <UpdateService/>
           </PrivateRoutes>,
 
-       loader: ({params}) => fetch(`http://localhost:3000/models/${params.id}`)
+       loader: ({params}) => fetch(`https://serveron.vercel.app/models/${params.id}`)
+    },{
+      path:"/profile",
+      element: <MyProfile/>
+    },{
+      path:"/update",
+      element: <MyUpdate/>
     }
 
-    ]
+  ]
 
 
   },

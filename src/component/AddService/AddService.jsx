@@ -21,7 +21,7 @@ const AddService =()=>{
             created_by: user.email
         };
 
-        fetch('http://localhost:3000/models',{
+        fetch('https://serveron.vercel.app/models',{
 
             method: "POST",
             headers:{

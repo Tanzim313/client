@@ -19,7 +19,7 @@ const BookingModal =({service,isOpen,onClose})=>{
    
 
 
-    fetch("http://localhost:3000/booking",{
+    fetch("https://serveron.vercel.app/booking",{
         method:"POST",
         headers:{
             "Content-Type":"application/json"

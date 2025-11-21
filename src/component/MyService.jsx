@@ -17,7 +17,7 @@ const MyService =()=>{
     useEffect(()=>{
         if(!user?.email) return;
 
-        fetch(`http://localhost:3000/models/email/${user.email}`)
+        fetch(`https://serveron.vercel.app/models/email/${user.email}`)
         .then(res=>res.json())
         .then(data=>setServices(data.result))
         .catch(err=>console.log(err));
@@ -40,7 +40,7 @@ const MyService =()=>{
 }).then((result) => {
     if (result.isConfirmed) {
 
-        fetch(`http://localhost:3000/models/${e}`,{
+        fetch(`https://serveron.vercel.app/models/${e}`,{
 
             method: "DELETE",
             headers:{
@@ -79,7 +79,7 @@ const MyService =()=>{
          <div className="mt-20 px-5 mb-20">
                     <h1 className=" text-center mb-10 text-xl font-bold">My Services</h1>
         
-                    <div className="p-2 border-2">
+                    <div className="p-2 border-2 overflow-x-auto">
                         <table className="table table-zebra w-full">
                             <thead>
                                 <tr className="">

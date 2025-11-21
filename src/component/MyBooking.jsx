@@ -12,7 +12,7 @@ const MyBooking =()=>{
     useEffect(()=>{
         if(!user?.email) return;
 
-        fetch(`http://localhost:3000/booking/${user.email}`)
+        fetch(`https://serveron.vercel.app/booking/${user.email}`)
         .then((res)=>res.json())
         .then((data)=>setBooking(data.result))
         .catch((err)=>console.log(err));
@@ -31,7 +31,7 @@ const MyBooking =()=>{
 }).then((result) => {
   if (result.isConfirmed) {
 
-    fetch(`http://localhost:3000/booking/${id}`,{
+    fetch(`https://serveron.vercel.app/booking/${id}`,{
     
                 method: "DELETE",
                 headers:{
@@ -60,11 +60,11 @@ const MyBooking =()=>{
     }
 
     return(
-        <div className="mt-20 px-5 mb-20">
+        <div className="mt-20 px-5 mb-20 ">
             <h1 className=" text-center mb-10 text-xl font-bold">My Booking</h1>
 
-            <div className="p-2 border-2">
-                <table className="table table-zebra w-full">
+            <div className="p-2 border-2 overflow-x-auto">
+                <table className=" table table-zebra w-full">
                     <thead>
                         <tr className="">
                             <th>Serial_on</th>

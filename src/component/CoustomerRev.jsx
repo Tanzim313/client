@@ -1,32 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { FaQuoteLeft } from "react-icons/fa";
 
-const testimonials = [
-  {
-    id: 1,
-    name: "Rahim Uddin",
-    role: "Home Owner",
-    image: "https://randomuser.me/api/portraits/men/32.jpg",
-    text: "I booked a plumbing service through Mr.ServeOn and the plumber arrived within 30 minutes. Excellent service and very professional!",
-  },
-  {
-    id: 2,
-    name: "Fatema Akter",
-    role: "Office Manager",
-    image: "https://randomuser.me/api/portraits/women/44.jpg",
-    text: "The cleaning team did an amazing job! My office looks spotless now. Highly recommended for anyone looking for trusted cleaners.",
-  },
-  {
-    id: 3,
-    name: "Mehedi Hasan",
-    role: "Shop Owner",
-    image: "https://randomuser.me/api/portraits/men/76.jpg",
-    text: "Affordable and quick! I booked an electrician and he fixed everything perfectly. I’ll definitely use this service again.",
-  },
-];
 
 const CoustomerRev = () => {
+
+    const [reviews,setReviews]=useState([]);
+
+    useEffect(()=>{
+        fetch("https://serveron.vercel.app/reviews")
+        .then(res=>res.json())
+        .then(data=>{
+            if(data.success){
+            const topRev = data.result
+            .sort((a,b)=>b.rating-a.rating)
+            .slice(0,6);
+
+            setReviews(topRev);
+            }
+
+            
+
+            setReviews(data.result);
+        })
+    })
+
   return (
     
     <div className="py-20 bg-[#f0faff] overflow-hidden">
@@ -43,9 +41,10 @@ const CoustomerRev = () => {
 
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-6 lg:px-20">
-                {testimonials.map((item,index)=>(
+                
+                {reviews.map((item,index)=>(
                     <motion.div
-                        key={item.id}
+                        key={item._id}
                         className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition relative overflow-hidden border border-[#e0f7ff]"
                         initial={{opacity:0,y:60}}
                         whileInView={{opacity:1,y:0}}
@@ -80,8 +79,8 @@ const CoustomerRev = () => {
 
                         <div className="flex flex-col items-center text-center mt-8">
                             <motion.img
-                                src={item.image}
-                                alt={item.name}
+                                src={item.userPhoto}
+                                alt={item.serviceName}
                                 className="w-24 rounded-full mb-4 border-4 border-[#33ccff] shadow-md "
 
                                 whileHover={
@@ -94,10 +93,10 @@ const CoustomerRev = () => {
                                 transition={{type:"spring",stiffness:400}}
                             ></motion.img>
 
-                            <h3 className="text-xl font-semibold">{item.name}</h3>
-                            <p className="text-sm text-gray-500 mb-3">{item.role}</p>
+                            <h3 className="text-xl font-semibold">{item.userName}</h3>
+                            <p className="text-sm text-gray-500 mb-3">{item.rating}</p>
                             <p className="text-gray-700 italic leading-relaxed">
-                                {item.text}
+                                {item.message}
                                 </p>
                         </div>
 

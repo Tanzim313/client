@@ -24,7 +24,7 @@ const Home =()=>{
 
                 <WhyChooseUs></WhyChooseUs>
 
-              <CoustomerRev></CoustomerRev>
+                <CoustomerRev></CoustomerRev>
 
             </div>
 

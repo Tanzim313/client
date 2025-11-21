@@ -39,8 +39,8 @@ const BookingModal =({service,isOpen,onClose})=>{
     if (!isOpen) return null;
 
     return(
-        <div className="absolute top-50 left-40">
-            <div className="bg-white p-6 rounded-md shadow">
+        <div className="absolute top-50 p-4 sm:left-20 flex justify-center items-center text-center">
+            <div className="flex flex-col justify-center items-center text-center  w-[280px] bg-white p-6 rounded-md shadow">
                 
                 <h2 className="text-xl font-bold mb-3 text-center text-black">
                     Book: {service.serviceName}
@@ -49,7 +49,7 @@ const BookingModal =({service,isOpen,onClose})=>{
                 <p className="text-center mb-2 text-gray-600">Price:{service.price}</p>
 
                 <form onSubmit={handleSubmit} action="">
-                    <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+                    <fieldset className=" fieldset bg-base-200 border-base-300 rounded-box w-[250px] border p-4">
 
                     <label className="label">UserEmail</label>
                     <input type="Email" value={user.email} className="input" readOnly/>

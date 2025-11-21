@@ -39,7 +39,7 @@ const BookingModal =({service,isOpen,onClose})=>{
     if (!isOpen) return null;
 
     return(
-        <div className="absolute top-50 p-4 sm:left-20 flex justify-center items-center text-center">
+        <div className="fixed inset-2 bg-black/30 flex justify-center items-center">
             <div className="flex flex-col justify-center items-center text-center  w-[280px] bg-white p-6 rounded-md shadow">
                 
                 <h2 className="text-xl font-bold mb-3 text-center text-black">

@@ -1,11 +1,22 @@
 import { div } from "framer-motion/client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router";
+import Loader from "./Loader";
 
 const UpdateService=()=>{
 
     const data = useLoaderData()
     const service = data.result;
+
+    const [loading,setLoading]=useState(true);
+
+    useEffect(()=>{
+        setTimeout(()=>{
+            setLoading(false);
+        },1000);
+    },[])
+        
+
 
     console.log("service-updated:",service)
 
@@ -24,6 +35,8 @@ const UpdateService=()=>{
             email:e.target.email.value,
         };
 
+        setLoading(true); 
+
         fetch(`https://serveron.vercel.app/models/${service._id}`,{
 
             method: "PUT",
@@ -35,12 +48,20 @@ const UpdateService=()=>{
         .then(res=>res.json())
         .then(data=>{
             console.log(data)
+            setLoading(false); 
         })
         .catch(err=>{
-            console.log(err)
+            console.log(err);
+             setLoading(false); 
         })
 
 
+    }
+
+    if (loading) {
+        return (
+            <Loader/>
+        );
     }
 
     return(

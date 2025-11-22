@@ -1,5 +1,5 @@
 import { div } from "framer-motion/client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router";
 import ServiceApp from "./ServiceApp";
 
@@ -11,14 +11,18 @@ const AllService = ()=>{
 
     const [services,setServices] = useState(data);
 
+
     const [min,setMin] = useState("");
     const [max,setMax] = useState("");
+
 
     const handleFilter = ()=>{
 
         const filtered = data.filter(service=>service.price >= Number(min)&& service.price <= Number(max));
         setServices(filtered);
     }
+
+  
 
 
 return(

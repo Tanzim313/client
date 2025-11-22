@@ -3,24 +3,35 @@ import React, { use, useEffect, useState } from "react";
 import { AuthContext } from "../Authprovider/AuthContext";
 import Swal from "sweetalert2";
 import Review from "./Review";
+import Loader from "./Loader";
 
 
 const MyBooking =()=>{
 
     const {user} = use(AuthContext);
     const [booking,setBooking] = useState([]);
-
+    
+    const [loading, setLoading] = useState(true);
     
     
     
     useEffect(()=>{
         if(!user?.email) return;
 
+        setLoading(true);
+
         fetch(`https://serveron.vercel.app/booking/${user.email}`)
         .then((res)=>res.json())
-        .then((data)=>setBooking(data.result))
-        .catch((err)=>console.log(err));
-    },[user]);
+        .then((data)=>{
+            setBooking(data.result);
+            setLoading(false);
+        })
+        .catch((err)=>{
+            console.log(err);
+            setLoading(false);
+    });
+    
+},[user]);
 
     const handleDelete2 =(id)=>{
             
@@ -77,9 +88,9 @@ const handleReview = (item) => {
 };
 
 
-   
-
-
+    if (loading) {
+        return <Loader/>;
+    }
 
 
     return(

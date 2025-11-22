@@ -1,18 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import img3 from "../assets/img3.png";
 
 import {motion} from "framer-motion";
 import { Link, useLoaderData } from "react-router";
-
-
+import Loader from "./Loader";
 
 const ServiceApp =({service})=>{
 
     const {serviceName,category,price,img,_id} = service
     console.log("service:",service);
-
+    
+   
     return(
+
+
         <div className="">
+
         
             <motion.div
                 key={service._id}
@@ -48,7 +51,7 @@ const ServiceApp =({service})=>{
                     >
 
                     </motion.img>
-
+                    
                 </motion.div>
 
                  <div>
@@ -78,13 +81,11 @@ const ServiceApp =({service})=>{
                         Views Details
                     </motion.button>
                 </motion.div>
-            </Link>
-
-
-
-                
+            </Link> 
                 
             </motion.div>
+
+            
         
     </div>
     )

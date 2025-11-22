@@ -2,13 +2,14 @@ import React, { use, useEffect, useState } from "react";
 import { Link, useLoaderData, useNavigate } from "react-router";
 import { AuthContext } from "../Authprovider/AuthContext";
 import Swal from "sweetalert2";
+import Loader from "./Loader";
 
 
 const MyService =()=>{
     
     const {user} = use(AuthContext);
     const[services,setServices] = useState([]);
-    
+    const [loading, setLoading] = useState(true);
     
     console.log(user)
     console.log(services)
@@ -17,10 +18,18 @@ const MyService =()=>{
     useEffect(()=>{
         if(!user?.email) return;
 
+        setLoading(true);
+
         fetch(`https://serveron.vercel.app/models/email/${user.email}`)
         .then(res=>res.json())
-        .then(data=>setServices(data.result))
-        .catch(err=>console.log(err));
+        .then(data=>{
+            setLoading(false);
+            setServices(data.result);
+        })
+        .catch(err=>{
+            setLoading(false);
+            console.log(err)
+        });
     },[user]);
 
 
@@ -72,6 +81,10 @@ const MyService =()=>{
     });
 
 }
+
+    if (loading) {
+        return <Loader />;
+    }
 
 
     return(

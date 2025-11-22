@@ -1,10 +1,19 @@
 import { div } from "framer-motion/client";
-import React, { use } from "react";
+import React, { use, useEffect, useState } from "react";
 import { AuthContext } from "../../Authprovider/AuthContext";
+import Loader from "../Loader";
 
 const AddService =()=>{
 
-    const {user} = use(AuthContext)
+    const {user} = use(AuthContext);
+    const [loading,setLoading]=useState(true);
+
+    useEffect(()=>{
+            setTimeout(()=>{
+                setLoading(false);
+            },1000);
+        },[])
+
 
     const handleSubmit = (e)=>{
         e.preventDefault()
@@ -20,7 +29,8 @@ const AddService =()=>{
             created_at: new Date(),
             created_by: user.email
         };
-
+        
+        setLoading(true);
         fetch('https://serveron.vercel.app/models',{
 
             method: "POST",
@@ -32,12 +42,22 @@ const AddService =()=>{
         .then(res=>res.json())
         .then(data=>{
             console.log(data)
+
+        setTimeout(() => {
+            setLoading(false);
+            }, 500);
         })
         .catch(err=>{
             console.log(err)
         })
 
 
+    }
+
+    if (loading) {
+        return (
+            <Loader/>
+        );
     }
 
     return(

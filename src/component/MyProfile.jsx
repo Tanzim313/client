@@ -1,16 +1,30 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Authprovider/AuthContext";
 import { Link } from "react-router";
 import { div } from "framer-motion/client";
+import Loader from "./Loader";
 
 const MyProfile=()=>{
 
     const {user} = useContext(AuthContext);
+    const [loading, setLoading] = useState(true);
+
+
+    useEffect(()=>{
+        if(user){
+            setTimeout(() => {
+                setLoading(false);
+            },500);
+        }
+    })
     
     if(!user){
-        return <p>Loading profile.....</p>
+        return <Loader/>
     }
 
+    if (loading) {
+        return <Loader/>;
+    }
 
     return(
         <div className="flex flex-col justify-center items-center">

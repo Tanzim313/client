@@ -1,6 +1,7 @@
 import { div } from "framer-motion/client";
 import React, { use, useState } from "react";
 import { AuthContext } from "../Authprovider/AuthContext";
+import toast, { Toaster } from "react-hot-toast";
 
 
 const MyUpdate =()=>{
@@ -20,6 +21,7 @@ const MyUpdate =()=>{
         e.preventDefault();
         updateUser({displayName:name,photoURL:photo,email:email})
         .then(()=>{
+            toast.success('Successfully Save!')
             setMessage("profile updated successfully!");
             setEdit(false);
         })
@@ -29,6 +31,9 @@ const MyUpdate =()=>{
 
     return(
         <div className="flex flex-col justify-center items-center mt-10 ">
+            <Toaster
+            position="top-center"
+            reverseOrder={false}/>
 
             <h1 className="text-4xl font-bold">Update Profile</h1>
 

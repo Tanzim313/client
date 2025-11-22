@@ -2,6 +2,7 @@ import { div } from "framer-motion/client";
 import React, { use, useEffect, useState } from "react";
 import { AuthContext } from "../../Authprovider/AuthContext";
 import Loader from "../Loader";
+import toast, { Toaster } from "react-hot-toast";
 
 const AddService =()=>{
 
@@ -41,6 +42,7 @@ const AddService =()=>{
         })
         .then(res=>res.json())
         .then(data=>{
+            toast.success('Successfully added!')
             console.log(data)
 
         setTimeout(() => {
@@ -62,6 +64,7 @@ const AddService =()=>{
 
     return(
         <div className="flex justify-center items-center p-20">
+            <div className="mt-10"><Toaster/></div>
             <form  onSubmit={handleSubmit} action="">
 
             <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">

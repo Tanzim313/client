@@ -17,6 +17,7 @@ import UpdateService from './component/Updateservice';
 import MyProfile from './component/MyProfile';
 import MyUpdate from './component/MyUpdateProfile';
 import Home from './component/Home';
+import Error from './Error/Error';
 
 
 
@@ -93,6 +94,9 @@ const router = createBrowserRouter([
     },{
       path:"/update",
       element: <MyUpdate/>
+    },{
+      path:"*",
+      element: <Error/>
     }
 
   ]

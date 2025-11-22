@@ -1,5 +1,6 @@
 import React, { use, useState } from "react";
 import { AuthContext } from "../Authprovider/AuthContext";
+import toast, { Toaster } from "react-hot-toast";
 
 const BookingModal =({service,isOpen,onClose})=>{
 
@@ -28,7 +29,6 @@ const BookingModal =({service,isOpen,onClose})=>{
     })
     .then((res)=>res.json())
     .then((data)=>{
-        alert("Booking successful!")
         onClose();
     })
     .catch((err)=>{
@@ -38,8 +38,16 @@ const BookingModal =({service,isOpen,onClose})=>{
 
     if (!isOpen) return null;
 
+
+    const handleToast=()=>{
+        toast.success('Successfully toasted!')
+    } 
+
     return(
         <div className="fixed inset-2 bg-black/30 flex justify-center items-center">
+
+            <div><Toaster/></div>
+
             <div className="flex flex-col justify-center items-center text-center  w-[280px] bg-white p-6 rounded-md shadow">
                 
                 <h2 className="text-xl font-bold mb-3 text-center text-black">
@@ -65,7 +73,7 @@ const BookingModal =({service,isOpen,onClose})=>{
                    
 
 
-                    <button type="submit" className="btn btn-neutral mt-4">Confirm Booking </button>
+                    <button onClick={handleToast} type="submit" className="btn btn-neutral mt-4">Confirm Booking </button>
                     
                      <button className="btn btn-neutral mt-4" onClick={onClose}>Close</button>
                     

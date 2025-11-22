@@ -1,5 +1,6 @@
 import { div } from "framer-motion/client";
 import React, { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 const Review =({isOpen,setIsOpen,selectedBook,user})=>{
 
@@ -38,9 +39,18 @@ const Review =({isOpen,setIsOpen,selectedBook,user})=>{
             .catch((err)=>console.log(err))
         };
 
+        const handleSubmit=()=>{
+                toast.success('Successfully Review!')
+        }
+
 
     return(
         <div className="fixed inset-0 bg-black/30 flex justify-center items-center z-50">
+            <div><Toaster
+            position="top-center"
+            reverseOrder={false}/></div>
+
+
             <form 
             onSubmit={submitReview}
             className="bg-white w-80 p-5 rounded shadow-md"
@@ -66,7 +76,7 @@ const Review =({isOpen,setIsOpen,selectedBook,user})=>{
                     onChange={(e)=>setMessage(e.target.value)}
                 ></textarea>
 
-                <button className="btn btn-primary w-full">submit</button>
+                <button onClick={handleSubmit} className="btn btn-primary w-full">submit</button>
 
                 <button
                     className="btn btn-error w-full mt-2"

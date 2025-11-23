@@ -18,6 +18,7 @@ import MyProfile from './component/MyProfile';
 import MyUpdate from './component/MyUpdateProfile';
 import Home from './component/Home';
 import Error from './Error/Error';
+import ForgotPassword from './component/ForgotPassword';
 
 
 
@@ -90,13 +91,23 @@ const router = createBrowserRouter([
        loader: ({params}) => fetch(`https://serveron.vercel.app/models/${params.id}`)
     },{
       path:"/profile",
-      element: <MyProfile/>
+      element: 
+      <PrivateRoutes>
+              <MyProfile/>
+      </PrivateRoutes>,
     },{
       path:"/update",
-      element: <MyUpdate/>
+      element:
+        <PrivateRoutes>
+              <MyUpdate/>
+        </PrivateRoutes>,
+      
     },{
       path:"*",
       element: <Error/>
+    },{
+      path:"forgot-password",
+      element: <ForgotPassword/>
     }
 
   ]

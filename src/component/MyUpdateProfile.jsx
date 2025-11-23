@@ -2,6 +2,7 @@ import { div } from "framer-motion/client";
 import React, { use, useState } from "react";
 import { AuthContext } from "../Authprovider/AuthContext";
 import toast, { Toaster } from "react-hot-toast";
+import { Link } from "react-router";
 
 
 const MyUpdate =()=>{
@@ -66,7 +67,9 @@ const MyUpdate =()=>{
                 />
 
                 <button type="submit" className="btn btn-success rounded-md">save</button>
-                <button type="button" className="btn btn-warning rounded-md" onClick={()=>setEdit(false)}>Cancel</button>
+                <Link to="/profile">
+                    <button type="button" className="btn btn-warning rounded-md w-full" onClick={()=>setEdit(false)}>Cancel</button>
+                </Link>
             </form>
             
         </div>

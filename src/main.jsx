@@ -13,7 +13,7 @@ import ServiceDetails from './component/ServiceDetails';
 import PrivateRoutes from './Routes/PrivateRoutes';
 import MyService from './component/MyService';
 import MyBooking from './component/MyBooking';
-import UpdateService from './component/Updateservice';
+import UpdateService from './component/UpdateService';
 import MyProfile from './component/MyProfile';
 import MyUpdate from './component/MyUpdateProfile';
 import Home from './component/Home';

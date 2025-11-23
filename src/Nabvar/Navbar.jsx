@@ -93,9 +93,9 @@ const Navbar =()=>{
 </div >
 
 
-    <a onClick={handleSignOut} className="btn bg-[#33ccff] font-bold  w-20  text-black">Signout</a>
+    <a onClick={handleSignOut} className="btn bg-[#33ccff] font-bold  w-20  text-white">Signout</a>
    </div>
-   :<Link className="btn bg-[#33ccff] font-bold  w-20  text-black" to="/login">Login</Link>}
+   :<Link className="btn bg-[#33ccff] font-bold  w-20  text-white" to="/login">Login</Link>}
   </div>
 </div>
         </div>

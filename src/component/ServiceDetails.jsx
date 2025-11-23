@@ -5,7 +5,7 @@ import BookingModal from "./BookingModal";
 import { AuthContext } from "../Authprovider/AuthContext";
 import Swal from "sweetalert2";
 import { div } from "framer-motion/client";
-import { FaQuoteLeft } from "react-icons/fa";
+import { FaQuoteLeft, FaRegStar } from "react-icons/fa";
 import Loader from "./Loader";
 
 
@@ -131,7 +131,7 @@ const ServiceDetails =()=>{
 
       <div>
 
-        <h2 className="text-center mt-10 mb-10 font-bold text-2xl">Customer Reviews</h2>
+        <h2 className="text-center mt-10 mb-10 font-bold text-3xl text-[#33ccff]">Customer Reviews</h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-6 lg:px-20">
                         
@@ -186,8 +186,12 @@ const ServiceDetails =()=>{
                                         transition={{type:"spring",stiffness:400}}
                                     ></motion.img>
         
-                                    <h3 className="text-xl font-semibold">{item.userName}</h3>
-                                    <p className="text-sm text-gray-500 mb-3">{item.rating}</p>
+                                    <h3 className="text-xl font-semibold text-[#33ccff]">{item.userName}</h3>
+                                    <p className="text-sm text-gray-500 mb-3 flex gap-1">
+                                        {Array.from({length:item.rating}).map((_,index)=>(
+                                                            <FaRegStar key={index} />
+                                                    ))}
+                                    </p>
                                     <p className="text-gray-700 italic leading-relaxed">
                                         {item.message}
                                         </p>

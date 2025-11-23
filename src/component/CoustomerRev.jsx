@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { FaQuoteLeft } from "react-icons/fa";
-
+import { FaRegStar } from "react-icons/fa";
 
 const CoustomerRev = () => {
 
@@ -92,8 +92,14 @@ const CoustomerRev = () => {
                                 transition={{type:"spring",stiffness:400}}
                             ></motion.img>
 
-                            <h3 className="text-xl font-semibold">{item.userName}</h3>
-                            <p className="text-sm text-gray-500 mb-3">{item.rating}</p>
+                            <h3 className="text-xl text-[#33ccff] font-semibold">{item.userName}</h3>
+                            <p className="text-sm text-gray-500 mb-3 flex gap-1 mt-2">
+
+                                {Array.from({length:item.rating}).map((_,index)=>(
+                                    <FaRegStar key={index} />
+                                ))}
+
+                            </p>
                             <p className="text-gray-700 italic leading-relaxed">
                                 {item.message}
                                 </p>

@@ -66,7 +66,7 @@ export default () => {
 
                         <Link to="/service">
                            <button
-                           className="mt-8 px-10 py-3 text-lg font-bold text-black rounded-full bg-[#33ccff] shadow-xl hover:bg-white/90 hover:scale-105 transition-all duration-300"
+                           className="mt-8 px-10 py-3 text-lg font-bold text-white rounded-full bg-[#33ccff] shadow-xl hover:bg-white/90 hover:scale-105 transition-all duration-300"
                            >
                               Explore
                            </button>

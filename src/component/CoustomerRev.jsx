@@ -12,6 +12,7 @@ const CoustomerRev = () => {
         .then(res=>res.json())
         .then(data=>{
             if(data.success){
+
             const topRev = data.result
             .sort((a,b)=>b.rating-a.rating)
             .slice(0,6);
@@ -19,11 +20,9 @@ const CoustomerRev = () => {
             setReviews(topRev);
             }
 
-            
-
-            setReviews(data.result);
+        //setReviews(data.result);
         })
-    })
+    },[])
 
   return (
     

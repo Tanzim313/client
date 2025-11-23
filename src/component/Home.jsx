@@ -14,6 +14,9 @@ const Home =()=>{
     
     const data = useLoaderData() ;
 
+
+    console.log("datath:",data);
+
     const [reviews,setReviews] = useState([]);
     const [topServices,setTopServices] = useState([]);
 

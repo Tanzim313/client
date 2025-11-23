@@ -8,19 +8,19 @@ const Footer =()=>{
         <div>
           
   <footer className="footer sm:footer-horizontal bg-base-300 text-base-content p-10">
+  
   <nav>
     <h6 className="footer-title">Contact info</h6>
-    <p className="">Email: support@skillswap.com</p>
-    <p className="">Phone: +880 1777-000000</p>
+    <p className="">Email: serveon@gmail.com</p>
+    <p className="">Phone: +880 1888-0000000</p>
     <p className="">Address: IIUC Campus, Kumira, Chattogram</p>
-    <p className="">Office Hours: Sun–Thu, 9:00 AM – 5:00 PM</p>
+    <p className="">Office Hours: Sat–Thu, 8:00 AM – 6:00 PM</p>
   </nav>
   <nav>
     <h6 className="footer-title">privacy policy</h6>
     <a className="link link-hover">About us</a>
     <a className="link link-hover">Contact</a>
-    <a className="link link-hover">Jobs</a>
-    <a className="link link-hover">Press kit</a>
+
   </nav>
   <nav>
     <h6 className="footer-title">Social</h6>
@@ -60,8 +60,17 @@ const Footer =()=>{
       </a>
     </div>
   </nav>
+
+
 </footer>
-        </div>
+
+    <div className="bg-base-300 text-center" >
+    <h1 className="p-4 font-bold">
+      Copyright@Develop by Tanzim
+    </h1>
+</div>
+
+</div>
 
     )
 }
